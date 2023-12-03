@@ -21,8 +21,6 @@ import MongooseHelper from '../helpers/mongoose.helper';
 
 export default class UserManager extends BaseManager {
   async get(params: IUserGetRequest): Promise<IUserGetResponse> {
-    console.log('UserManager.get() params:', JSON.stringify(params)); // TODO: Remove Before Flight!
-
     const { ids, username, phone, shopId, organizationId, includeDeleted } =
       params;
     const query: {
@@ -50,8 +48,6 @@ export default class UserManager extends BaseManager {
   }
 
   async save(params: IUserSaveRequest): Promise<IUserSaveResponse> {
-    console.log('UserManager.save() params:', JSON.stringify(params)); // TODO: Remove Before Flight!
-
     const { user } = params;
     const now = dayJs.utc().toDate();
 
@@ -93,15 +89,11 @@ export default class UserManager extends BaseManager {
   }
 
   async delete(params: IUserDeleteRequest): Promise<IUserDeleteResponse> {
-    console.log('UserManager.delete() params:', JSON.stringify(params)); // TODO: Remove Before Flight!
-
     const { id } = params;
     const document = await UserModel.findOneAndUpdate(
       { clientId: id },
       { isDeleted: true, updatedAt: dayJs.utc().toDate() }
     );
-
-    console.log('UserManager.delete() document:', JSON.stringify(document)); // TODO: Remove Before Flight!
 
     return {
       code: ResponseCodeEnum.Success,

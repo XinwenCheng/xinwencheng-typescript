@@ -12,6 +12,22 @@
     "clear": "rm -rf dist",
     "lint": "eslint src --ext .ts"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "prettier --write",
+      "eslint",
+      "git add"
+    ],
+    "*.{html,css,less,ejs}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "@google-cloud/functions-framework": "3.3.0",
     "@google-cloud/language": "6.1.1",
@@ -27,6 +43,9 @@
     "@typescript-eslint/eslint-plugin": "6.13.1",
     "@typescript-eslint/parser": "6.13.1",
     "eslint": "8.55.0",
+    "husky": "8.0.3",
+    "lint-staged": "15.2.0",
+    "prettier": "3.1.0",
     "typescript": "5.3.2"
   }
 }

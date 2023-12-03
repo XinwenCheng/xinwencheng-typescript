@@ -6,6 +6,7 @@ import { ResponseCodeEnum } from './route/response/base-response.type';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const entrance: HttpFunction = async (request: any, response: any) => {
   // Handle CORS for preflight request: https://cloud.google.com/functions/docs/samples/functions-http-cors#functions_http_cors-nodejs.
+  // eslint-disable-next-line no-console
   console.log(
     'INDEX request.path:',
     request.path,
@@ -57,11 +58,13 @@ export const entrance: HttpFunction = async (request: any, response: any) => {
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
+    // eslint-disable-next-line no-console
     console.error('INDEX error:', error);
 
     result = { code: -1, message: error.message ?? error };
   }
 
+  // eslint-disable-next-line no-console
   console.log(
     'INDEX route:',
     route,
