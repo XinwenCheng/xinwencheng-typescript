@@ -1,14 +1,14 @@
 import { IOrganizationData } from '../../type/data/organization.type';
-import { IGetRequest, IRequest } from './base-request.type';
+import { IBaseGetRequestData, IBaseRequestData } from './base-request.type';
 
-export interface IOrganizationGetRequest extends IGetRequest {
+export interface IOrganizationGetRequest extends IBaseGetRequestData {
   ids: string[];
 }
 
-export interface IOrganizationSaveRequest extends IRequest {
+export interface IOrganizationSaveRequest extends IBaseRequestData {
   organization: IOrganizationData;
 }
 
-export interface IOrganizationDeleteRequest extends IRequest {
+export interface IOrganizationDeleteRequest extends IBaseRequestData {
   id: string;
 }

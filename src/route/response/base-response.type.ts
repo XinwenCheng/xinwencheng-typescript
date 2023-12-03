@@ -1,4 +1,4 @@
-export interface IResponse {
+export interface IBaseResponseData {
   code: number;
   message?: string;
 }

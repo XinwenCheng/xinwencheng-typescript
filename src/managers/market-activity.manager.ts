@@ -13,7 +13,7 @@ import {
 } from '../route/response/market-activity-response.type';
 import {
   IMarketActivityData,
-  MarketActivityRulePreconditionDataType
+  IMarketActivityRulePreconditionData
 } from '../type/data/market-activity.type';
 import { IOrderData } from '../type/data/order.type';
 import { IPaymentData } from '../type/data/payment.type';
@@ -123,7 +123,7 @@ export default class MarketActivityManager extends BaseManager {
   }
 
   validatePrecondition(
-    precondition: MarketActivityRulePreconditionDataType,
+    precondition: IMarketActivityRulePreconditionData,
     order?: IOrderData
   ): boolean {
     const { product, productCategory } = precondition;

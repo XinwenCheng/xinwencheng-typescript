@@ -1,7 +1,7 @@
-import { IDataType } from '../base.type';
-import { BaseMarketActivityRuleDataType } from './market-activity.type';
+import { IBaseDataType } from '../base.type';
+import { IBaseMarketActivityRuleData } from './market-activity.type';
 
-export interface ICouponData extends IDataType {
+export interface ICouponData extends IBaseDataType {
   id: string;
   name: string;
   description?: string;
@@ -13,7 +13,7 @@ export interface ICouponData extends IDataType {
   expiryDate?: Date;
   usedAt?: Date;
   isMandatoryExpired?: boolean;
-  rule: BaseMarketActivityRuleDataType;
+  rule: IBaseMarketActivityRuleData;
 }
 
 export type DiscountCouponUnitType = 'price' | 'percent';

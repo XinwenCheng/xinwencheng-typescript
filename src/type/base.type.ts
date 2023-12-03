@@ -1,5 +1,5 @@
-import { IRequest } from '../route/request/base-request.type';
-import { IResponse } from '../route/response/base-response.type';
+import { IBaseRequestData } from '../route/request/base-request.type';
+import { IBaseResponseData } from '../route/response/base-response.type';
 
 const dayJs = require('dayjs');
 const utc = require('dayjs/plugin/utc');
@@ -13,16 +13,18 @@ export default abstract class BaseHandler {
     dayJs.extend(utc);
   }
 
-  abstract handle(params: IHandlerParameterDataType): Promise<IResponse>;
+  abstract handle(
+    params: IHandlerParameterDataType
+  ): Promise<IBaseResponseData>;
 }
 
 export interface IHandlerParameterDataType {
-  requestData: IRequest;
+  requestData: IBaseRequestData;
   fromToken?: string;
   request?: any;
 }
 
-export interface IDataType {
+export interface IBaseDataType {
   id?: string;
   isDeleted?: boolean;
   createdAt: Date;

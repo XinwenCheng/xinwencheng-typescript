@@ -1,5 +1,5 @@
-export interface IRequest {}
+export interface IBaseRequestData {}
 
-export interface IGetRequest extends IRequest {
+export interface IBaseGetRequestData extends IBaseRequestData {
   includeDeleted?: boolean;
 }

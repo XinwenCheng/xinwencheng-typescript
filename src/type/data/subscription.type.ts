@@ -1,20 +1,20 @@
-import { IDataType } from '../base.type';
+import { IBaseDataType } from '../base.type';
 import { DiscountCouponType } from './coupon.type';
 import { ProductCategoryType } from './product.type';
 
-export interface ISubscriptionData extends IDataType {
+export interface ISubscriptionData extends IBaseDataType {
   subscriberId: string;
   organizationId: string;
   duration: SubscriptionDurationType;
   startDate: Date;
   expiryDate: Date;
-  capability: BaseSubscriptionUsageCapabilityDataType;
+  capability: IBaseSubscriptionUsageCapabilityData;
 }
 
-export interface BaseSubscriptionUsageCapabilityDataType {}
+export interface IBaseSubscriptionUsageCapabilityData {}
 
-export interface MonthlySubscriptionCapabilityDataType
-  extends BaseSubscriptionUsageCapabilityDataType {
+export interface IMonthlySubscriptionCapabilityData
+  extends IBaseSubscriptionUsageCapabilityData {
   categories: {
     category: ProductCategoryType;
     limit: number;
@@ -25,7 +25,7 @@ export interface MonthlySubscriptionCapabilityDataType
   }[];
 }
 
-export interface AnnualSubscriptionCapabilityDataType
-  extends MonthlySubscriptionCapabilityDataType {}
+export interface IAnnualSubscriptionCapabilityData
+  extends IMonthlySubscriptionCapabilityData {}
 
 export type SubscriptionDurationType = 'monthly' | 'annual';

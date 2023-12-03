@@ -1,6 +1,6 @@
-import { IRequest } from './base-request.type';
+import { IBaseRequestData } from './base-request.type';
 
-export interface ISignInRequest extends IRequest {
+export interface ISignInRequest extends IBaseRequestData {
   nameOrPhone: string;
   password: string;
 }

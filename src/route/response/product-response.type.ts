@@ -1,14 +1,14 @@
 import { IProductData } from '../../type/data/product.type';
-import { IResponse } from './base-response.type';
+import { IBaseResponseData } from './base-response.type';
 
-export interface IProductGetResponse extends IResponse {
+export interface IProductGetResponse extends IBaseResponseData {
   products: IProductData[];
 }
 
-export interface IProductSaveResponse extends IResponse {
+export interface IProductSaveResponse extends IBaseResponseData {
   product: IProductData;
 }
 
-export interface IProductDeleteResponse extends IResponse {
+export interface IProductDeleteResponse extends IBaseResponseData {
   product: IProductData;
 }

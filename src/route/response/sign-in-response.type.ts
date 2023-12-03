@@ -1,8 +1,8 @@
 import { ITokenData } from '../../type/data/token.type';
 import { IUserData } from '../../type/data/user.type';
-import { IResponse } from './base-response.type';
+import { IBaseResponseData } from './base-response.type';
 
-export interface ISignInResponse extends IResponse {
+export interface ISignInResponse extends IBaseResponseData {
   token: ITokenData;
   user: IUserData;
 }

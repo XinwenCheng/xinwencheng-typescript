@@ -1,6 +1,6 @@
-import { IDataType } from '../base.type';
+import { IBaseDataType } from '../base.type';
 
-export interface IUserData extends IDataType {
+export interface IUserData extends IBaseDataType {
   username: string;
   phone?: string;
   encryptedPassword: string;

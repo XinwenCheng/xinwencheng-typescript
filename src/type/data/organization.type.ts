@@ -1,6 +1,6 @@
-import { IDataType } from '../base.type';
+import { IBaseDataType } from '../base.type';
 
-export interface IOrganizationData extends IDataType {
+export interface IOrganizationData extends IBaseDataType {
   name: string;
   unifiedSocialCreditCode: string;
   managerId: string;

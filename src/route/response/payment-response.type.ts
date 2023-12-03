@@ -1,14 +1,14 @@
 import { IPaymentData } from '../../type/data/payment.type';
-import { IResponse } from './base-response.type';
+import { IBaseResponseData } from './base-response.type';
 
-export interface IPaymentGetResponse extends IResponse {
+export interface IPaymentGetResponse extends IBaseResponseData {
   payments: IPaymentData[];
 }
 
-export interface IPaymentSaveResponse extends IResponse {
+export interface IPaymentSaveResponse extends IBaseResponseData {
   payment: IPaymentData;
 }
 
-export interface IPaymentDeleteResponse extends IResponse {
+export interface IPaymentDeleteResponse extends IBaseResponseData {
   payment: IPaymentData;
 }

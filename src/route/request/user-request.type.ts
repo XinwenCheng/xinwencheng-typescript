@@ -1,7 +1,7 @@
 import { IUserData } from '../../type/data/user.type';
-import { IGetRequest, IRequest } from './base-request.type';
+import { IBaseGetRequestData, IBaseRequestData } from './base-request.type';
 
-export interface IUserGetRequest extends IGetRequest {
+export interface IUserGetRequest extends IBaseGetRequestData {
   ids?: string[];
   username?: string;
   phone?: string;
@@ -9,10 +9,10 @@ export interface IUserGetRequest extends IGetRequest {
   organizationId?: string;
 }
 
-export interface IUserSaveRequest extends IRequest {
+export interface IUserSaveRequest extends IBaseRequestData {
   user: IUserData;
 }
 
-export interface IUserDeleteRequest extends IRequest {
+export interface IUserDeleteRequest extends IBaseRequestData {
   id: string;
 }

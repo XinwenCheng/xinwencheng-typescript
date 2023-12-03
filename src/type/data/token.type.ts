@@ -1,6 +1,6 @@
-import { IDataType } from '../base.type';
+import { IBaseDataType } from '../base.type';
 
-export interface ITokenData extends IDataType {
+export interface ITokenData extends IBaseDataType {
   userId: string;
   token: string;
   expiredAt: Date;

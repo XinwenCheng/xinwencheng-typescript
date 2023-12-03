@@ -1,14 +1,14 @@
 import { IOrganizationData } from '../../type/data/organization.type';
-import { IResponse } from './base-response.type';
+import { IBaseResponseData } from './base-response.type';
 
-export interface IOrganizationGetResponse extends IResponse {
+export interface IOrganizationGetResponse extends IBaseResponseData {
   organizations: IOrganizationData[];
 }
 
-export interface IOrganizationSaveResponse extends IResponse {
+export interface IOrganizationSaveResponse extends IBaseResponseData {
   organization: IOrganizationData;
 }
 
-export interface IOrganizationDeleteResponse extends IResponse {
+export interface IOrganizationDeleteResponse extends IBaseResponseData {
   organization: IOrganizationData;
 }

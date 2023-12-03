@@ -1,6 +1,6 @@
-import { IDataType } from '../base.type';
+import { IBaseDataType } from '../base.type';
 
-export interface IShopData extends IDataType {
+export interface IShopData extends IBaseDataType {
   managerId?: string;
   name: string;
   description?: string;

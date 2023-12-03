@@ -1,14 +1,14 @@
 import { IShopData } from '../../type/data/shop.type';
-import { IGetRequest, IRequest } from './base-request.type';
+import { IBaseGetRequestData, IBaseRequestData } from './base-request.type';
 
-export interface IShopGetRequest extends IGetRequest {
+export interface IShopGetRequest extends IBaseGetRequestData {
   ids: string[];
 }
 
-export interface IShopSaveRequest extends IRequest {
+export interface IShopSaveRequest extends IBaseRequestData {
   shop: IShopData;
 }
 
-export interface IShopDeleteRequest extends IRequest {
+export interface IShopDeleteRequest extends IBaseRequestData {
   id: string;
 }

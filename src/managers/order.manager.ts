@@ -16,10 +16,10 @@ import {
 } from '../route/response/order-response.type';
 import { ICouponData } from '../type/data/coupon.type';
 import {
-  DiscountMarketActivityRuleDataType,
-  FreeMarketActivityRuleDataType
+  IDiscountMarketActivityRuleData,
+  IFreeMarketActivityRuleData
 } from '../type/data/market-activity.type';
-import { IOrderData, OrderProductDataType } from '../type/data/order.type';
+import { IOrderData, IOrderProductData } from '../type/data/order.type';
 import BaseManager from './base.manager';
 import CouponManager from './coupon.manager';
 import MarketActivityManager from './market-activity.manager';
@@ -143,7 +143,7 @@ export default class OrderManager extends BaseManager {
       const { rule } = coupon;
 
       if (rule.type === 'discount') {
-        const { discount } = rule as DiscountMarketActivityRuleDataType;
+        const { discount } = rule as IDiscountMarketActivityRuleData;
 
         if (discount.unit === 'price') {
           orderDocument.price.final = Math.max(
@@ -158,7 +158,7 @@ export default class OrderManager extends BaseManager {
           );
         }
       } else if (rule.type === 'free') {
-        const freeRule = rule as FreeMarketActivityRuleDataType;
+        const freeRule = rule as IFreeMarketActivityRuleData;
 
         let orderProduct = orderDocument.products.find(
           (item) => item.productId === freeRule.productId

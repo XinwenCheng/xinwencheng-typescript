@@ -1,12 +1,12 @@
 import { ITokenData } from '../../type/data/token.type';
-import { IResponse } from './base-response.type';
+import { IBaseResponseData } from './base-response.type';
 
-export interface ITokenGetResponse extends IResponse {
+export interface ITokenGetResponse extends IBaseResponseData {
   token: ITokenData;
 }
 
-export interface ITokenSaveResponse extends IResponse {
+export interface ITokenSaveResponse extends IBaseResponseData {
   token: ITokenData;
 }
 
-export interface ITokenDeleteResponse extends IResponse {}
+export interface ITokenDeleteResponse extends IBaseResponseData {}
