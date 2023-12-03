@@ -1,0 +1,28 @@
+{
+  "name": "xinwencheng-typescript",
+  "version": "0.8.0",
+  "main": "index.js",
+  "author": "Xinwen CHENG",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "gcp-build": "",
+    "start": "npm run clear && prettier -w src && npm run build",
+    "deploy": "npm run clear && prettier -w src && npm run build && npm run clear",
+    "clear": "rm -rf dist"
+  },
+  "dependencies": {
+    "@google-cloud/functions-framework": "3.3.0",
+    "@google-cloud/language": "6.1.1",
+    "@google-cloud/storage": "7.7.0",
+    "axios": "1.6.2",
+    "dayjs": "1.11.10",
+    "formidable-serverless": "1.1.1",
+    "mongoose": "8.0.2",
+    "mongoose-validator": "2.1.0",
+    "uuid": "9.0.1"
+  },
+  "devDependencies": {
+    "typescript": "5.3.2"
+  }
+}
