@@ -43,6 +43,18 @@ export default class SubscriptionManager extends BaseManager {
     };
   }
 
+  async getValidSubscription(
+    subscriberId: string
+  ): Promise<ISubscriptionData[]> {
+    const documents = await SubscriptionModel.find({
+      subscriberId,
+      isDeleted: { $ne: true },
+      expiryDate: { $gte: dayJs.utc().toDate() }
+    });
+
+    return documents.map((item) => this.parseDocumentToData(item));
+  }
+
   async save(
     params: ISubscriptionSaveRequest
   ): Promise<ISubscriptionSaveResponse> {

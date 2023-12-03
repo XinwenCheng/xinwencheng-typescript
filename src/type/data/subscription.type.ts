@@ -17,6 +17,7 @@ export interface IMonthlySubscriptionCapabilityData
   extends IBaseSubscriptionUsageCapabilityData {
   categories: {
     category: ProductCategoryType;
+    unlimited?: boolean;
     limit: number;
   }[];
   discount: {
