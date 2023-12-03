@@ -25,4 +25,7 @@ export interface MonthlySubscriptionCapabilityDataType
   }[];
 }
 
-export type SubscriptionDurationType = 'monthly' | 'annually';
+export interface AnnualSubscriptionCapabilityDataType
+  extends BaseSubscriptionUsageCapabilityDataType {}
+
+export type SubscriptionDurationType = 'monthly' | 'annual';
