@@ -114,6 +114,23 @@ export default class PaymentManager extends BaseManager {
     };
   }
 
+  async validateCompletation(
+    paymentId: string,
+    userId?: string
+  ): Promise<boolean> {
+    if (!paymentId) return false;
+
+    const query = { clientId: paymentId };
+
+    if (userId) query['userId'] = userId;
+
+    await MongooseHelper.startConnection();
+
+    const document = await PaymentModel.findOne(query);
+
+    return this.parseDocumentToData(document).status === 'paid';
+  }
+
   parseDocumentToData(document): IPaymentData {
     const {
       clientId,

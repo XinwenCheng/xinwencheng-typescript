@@ -18,6 +18,7 @@ import {
 } from '../route/response/subscription-response.type';
 import { ResponseCodeEnum } from '../route/response/base-response.type';
 import MongooseHelper from '../helpers/mongoose.helper';
+import PaymentManager from './payment.manager';
 
 export default class SubscriptionManager extends BaseManager {
   async get(
@@ -58,6 +59,16 @@ export default class SubscriptionManager extends BaseManager {
   async save(
     params: ISubscriptionSaveRequest
   ): Promise<ISubscriptionSaveResponse> {
+    const { subscription, payment } = params;
+
+    if (
+      !(await new PaymentManager().validateCompletation(
+        payment.id,
+        subscription.subscriberId
+      ))
+    )
+      throw new Error('Payment validation failed.');
+
     const {
       id,
       subscriberId,
@@ -65,7 +76,7 @@ export default class SubscriptionManager extends BaseManager {
       duration,
       startDate,
       expiryDate
-    } = params.subscription;
+    } = subscription;
     const now = dayJs.utc().toDate();
 
     let document;
