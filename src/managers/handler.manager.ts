@@ -29,7 +29,7 @@ import BaseHandler from '../type/base.type';
 import { MethodEnum } from '../type/method.type';
 
 export default class HandlerManager {
-  #handlerMap = {
+  readonly #handlerMap = {
     [ApiRoute.Organization.path]: this.#getOrganizationHandler,
     [ApiRoute.Shop.path]: this.#getShopHandler,
     [ApiRoute.User.path]: this.#getUserHandler,
