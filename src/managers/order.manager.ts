@@ -160,28 +160,34 @@ export default class OrderManager extends BaseManager {
       } else if (rule.type === 'free') {
         const freeRule = rule as FreeMarketActivityRuleDataType;
 
-        let product = orderDocument.products.find(
+        let orderProduct = orderDocument.products.find(
           (item) => item.productId === freeRule.productId
         );
 
-        if (product) {
-          product.quantity += freeRule.freeAmount;
-        } else {
-          const { products } = await new ProductManager().get({
-            ids: [freeRule.productId]
-          });
+        let presentedQuantity = freeRule.purchasedQuantity
+          ? Math.floor(orderProduct.quantity / freeRule.purchasedQuantity) *
+            freeRule.presentedQuantity
+          : freeRule.presentedQuantity;
 
-          product = products?.length
-            ? {
-                productId: products[0].id,
-                productCategory: products[0].category,
-                quantity: freeRule.freeAmount,
-                finalPrice: 0
-              }
-            : undefined;
+        if (freeRule)
+          if (orderProduct) {
+            orderProduct.quantity += presentedQuantity;
+          } else {
+            const { products } = await new ProductManager().get({
+              ids: [freeRule.productId]
+            });
 
-          orderDocument.products.push(product);
-        }
+            orderProduct = products?.length
+              ? {
+                  productId: products[0].id,
+                  productCategory: products[0].category,
+                  quantity: presentedQuantity,
+                  finalPrice: 0
+                }
+              : undefined;
+
+            orderDocument.products.push(orderProduct);
+          }
       }
     }
 

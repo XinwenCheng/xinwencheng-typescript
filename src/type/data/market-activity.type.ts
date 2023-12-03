@@ -36,5 +36,9 @@ export interface DiscountMarketActivityRuleDataType
 export interface FreeMarketActivityRuleDataType
   extends BaseMarketActivityRuleDataType {
   productId: string;
-  freeAmount: number;
+  /**
+   * 0 means no limit.
+   */
+  purchasedQuantity: number;
+  presentedQuantity: number;
 }
