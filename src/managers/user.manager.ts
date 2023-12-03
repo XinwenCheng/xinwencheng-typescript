@@ -2,7 +2,7 @@ const dayJs = require('dayjs');
 const { v4: uuidV4 } = require('uuid');
 
 import BaseManager from './base.manager';
-import { UserDataType } from '../type/data/user.type';
+import { IUserData } from '../type/data/user.type';
 import {
   IUserDeleteRequest,
   IUserGetRequest,
@@ -19,44 +19,36 @@ import MongooseHelper from '../helpers/mongoose.helper';
 
 export default class UserManager extends BaseManager {
   async get(params: IUserGetRequest): Promise<IUserGetResponse> {
-    console.log('UserManager.getUsers() params:', JSON.stringify(params)); // TODO: Remove Before Flight!
+    console.log('UserManager.get() params:', JSON.stringify(params)); // TODO: Remove Before Flight!
 
-    const { ids, names, shopId, organizationId } = params;
+    const { ids, username, phone, shopId, organizationId, includeDeleted } =
+      params;
     const query: {
-      [key: string]: string | { [key: string]: string | string[] };
+      [key: string]: string | { [key: string]: string | string[] | boolean };
     } = {
       organizationId
     };
 
-    if (ids?.length) {
-      query.clientId = { $in: ids };
-    }
+    if (ids?.length) query.clientId = { $in: ids };
+    if (username) query.username = username;
+    if (phone) query.phone = phone;
+    if (shopId) query.shopId = shopId;
+    if (!includeDeleted) query.isDeleted = { $ne: true };
 
-    if (names?.length) {
-      query.name = { $in: names };
-    }
-
-    if (shopId) {
-      query.shopId = shopId;
-    }
+    await MongooseHelper.startConnection();
 
     const userDocuments = await UserModel.find(query);
-
-    console.log(
-      'UserManager.getTags() userDocuments:',
-      JSON.stringify(userDocuments)
-    ); // TODO: Remove Before Flight!
 
     return {
       code: ResponseCodeEnum.Success,
       users: userDocuments
         .filter((item) => !item.isDeleted)
-        .map((item) => this.parseDocumentToData(item)) as UserDataType[]
+        .map((item) => this.parseDocumentToData(item)) as IUserData[]
     };
   }
 
   async save(params: IUserSaveRequest): Promise<IUserSaveResponse> {
-    console.log('UserManager.saveUser() params:', JSON.stringify(params)); // TODO: Remove Before Flight!
+    console.log('UserManager.save() params:', JSON.stringify(params)); // TODO: Remove Before Flight!
 
     const { user } = params;
     const now = dayJs.utc().toDate();
@@ -69,7 +61,7 @@ export default class UserManager extends BaseManager {
       document = await UserModel.findOneAndUpdate(
         { clientId: user.id },
         {
-          name: user.name,
+          name: user.username,
           phone: user.phone,
           role: user.role,
           shopId: user.shopId,
@@ -83,7 +75,7 @@ export default class UserManager extends BaseManager {
     } else {
       document = await UserModel.create({
         clientId: uuidV4(),
-        name: user.name,
+        name: user.username,
         phone: user.phone,
         role: user.role,
         shopId: user.shopId,
@@ -99,7 +91,7 @@ export default class UserManager extends BaseManager {
   }
 
   async delete(params: IUserDeleteRequest): Promise<IUserDeleteResponse> {
-    console.log('UserManager.deleteUser() params:', JSON.stringify(params)); // TODO: Remove Before Flight!
+    console.log('UserManager.delete() params:', JSON.stringify(params)); // TODO: Remove Before Flight!
 
     const { id } = params;
     const document = await UserModel.findOneAndUpdate(
@@ -107,7 +99,7 @@ export default class UserManager extends BaseManager {
       { isDeleted: true, updatedAt: dayJs.utc().toDate() }
     );
 
-    console.log('UserManager.deleteUser() document:', JSON.stringify(document)); // TODO: Remove Before Flight!
+    console.log('UserManager.delete() document:', JSON.stringify(document)); // TODO: Remove Before Flight!
 
     return {
       code: ResponseCodeEnum.Success,
@@ -115,7 +107,7 @@ export default class UserManager extends BaseManager {
     };
   }
 
-  parseDocumentToData(document): UserDataType {
+  parseDocumentToData(document): IUserData {
     const {
       clientId,
       name,
@@ -131,8 +123,16 @@ export default class UserManager extends BaseManager {
 
     return {
       id: clientId,
-      name,
+      username: name,
       phone,
+      /**
+       * Do not return encryptedPassword.
+       */
+      encryptedPassword: '',
+      /**
+       * Do not return salt.
+       */
+      salt: '',
       role,
       shopId,
       organizationId,

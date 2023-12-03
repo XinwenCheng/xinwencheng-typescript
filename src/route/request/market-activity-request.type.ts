@@ -1,4 +1,4 @@
-import { MarketActivityDataType } from '../../type/data/market-activity.type';
+import { IMarketActivityData } from '../../type/data/market-activity.type';
 import { IGetRequest, IRequest } from './base-request.type';
 
 export interface IMarketActivityGetRequest extends IGetRequest {
@@ -9,7 +9,7 @@ export interface IMarketActivityGetRequest extends IGetRequest {
 }
 
 export interface IMarketActivitySaveRequest extends IRequest {
-  marketActivity: MarketActivityDataType;
+  marketActivity: IMarketActivityData;
 }
 
 export interface IMarketActivityDeleteRequest extends IRequest {

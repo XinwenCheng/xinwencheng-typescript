@@ -1,18 +1,18 @@
-import { CouponDataType } from '../../type/data/coupon.type';
+import { ICouponData } from '../../type/data/coupon.type';
 import { IResponse } from './base-response.type';
 
 export interface ICouponGetResponse extends IResponse {
-  coupons: CouponDataType[];
+  coupons: ICouponData[];
 }
 
 export interface ICouponSaveResponse extends IResponse {
-  coupon: CouponDataType;
+  coupon: ICouponData;
 }
 
 export interface ICouponDeleteResponse extends IResponse {
-  coupon: CouponDataType;
+  coupon: ICouponData;
 }
 
 export interface ICouponCreateResponse extends IResponse {
-  coupons?: CouponDataType[];
+  coupons?: ICouponData[];
 }

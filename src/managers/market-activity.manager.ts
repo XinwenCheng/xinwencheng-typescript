@@ -12,11 +12,11 @@ import {
   IMarketActivityDeleteResponse
 } from '../route/response/market-activity-response.type';
 import {
-  MarketActivityDataType,
+  IMarketActivityData,
   MarketActivityRulePreconditionDataType
 } from '../type/data/market-activity.type';
-import { OrderDataType } from '../type/data/order.type';
-import { PaymentDataType } from '../type/data/payment.type';
+import { IOrderData } from '../type/data/order.type';
+import { IPaymentData } from '../type/data/payment.type';
 import BaseManager from './base.manager';
 
 const dayJs = require('dayjs');
@@ -124,7 +124,7 @@ export default class MarketActivityManager extends BaseManager {
 
   validatePrecondition(
     precondition: MarketActivityRulePreconditionDataType,
-    order?: OrderDataType
+    order?: IOrderData
   ): boolean {
     const { product, productCategory } = precondition;
 
@@ -172,7 +172,7 @@ export default class MarketActivityManager extends BaseManager {
     }
   }
 
-  parseDocumentToData(document: any): MarketActivityDataType {
+  parseDocumentToData(document): IMarketActivityData {
     const {
       clientId,
       organizationId,

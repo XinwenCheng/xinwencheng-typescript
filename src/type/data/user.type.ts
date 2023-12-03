@@ -1,11 +1,13 @@
 import { IDataType } from '../base.type';
 
-export interface UserDataType extends IDataType {
-  name: string;
-  phone: string;
+export interface IUserData extends IDataType {
+  username: string;
+  phone?: string;
+  encryptedPassword: string;
+  salt: string;
   role: UserRoleType;
   shopId?: string;
-  organizationId: string;
+  organizationId?: string;
   isDeactivated?: boolean;
 }
 

@@ -15,7 +15,7 @@ import {
 import MongooseHelper from '../helpers/mongoose.helper';
 import { ShopModel } from '../models/shop.model';
 import { ResponseCodeEnum } from '../route/response/base-response.type';
-import { ShopDataType } from '../type/data/shop.type';
+import { IShopData } from '../type/data/shop.type';
 
 export default class ShopManager extends BaseManager {
   async get(params: IShopGetRequest): Promise<IShopGetResponse> {
@@ -97,7 +97,7 @@ export default class ShopManager extends BaseManager {
     };
   }
 
-  parseDocumentToData(document: any): ShopDataType {
+  parseDocumentToData(document): IShopData {
     return {
       id: document.clientId,
       managerId: document.managerId,

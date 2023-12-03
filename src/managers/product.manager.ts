@@ -14,7 +14,7 @@ import {
   IProductGetResponse,
   IProductSaveResponse
 } from '../route/response/product-response.type';
-import { ProductDataType } from '../type/data/product.type';
+import { IProductData } from '../type/data/product.type';
 import BaseManager from './base.manager';
 
 export default class ProductManager extends BaseManager {
@@ -88,7 +88,7 @@ export default class ProductManager extends BaseManager {
     };
   }
 
-  parseDocumentToData(document: any): ProductDataType {
+  parseDocumentToData(document): IProductData {
     return {
       id: document.clientId,
       name: document.name,

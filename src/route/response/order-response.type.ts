@@ -1,14 +1,14 @@
-import { OrderDataType } from '../../type/data/order.type';
+import { IOrderData } from '../../type/data/order.type';
 import { IResponse } from './base-response.type';
 
 export interface IOrderGetResponse extends IResponse {
-  orders: OrderDataType[];
+  orders: IOrderData[];
 }
 
 export interface IOrderSaveResponse extends IResponse {
-  order: OrderDataType;
+  order: IOrderData;
 }
 
 export interface IOrderDeleteResponse extends IResponse {
-  order: OrderDataType;
+  order: IOrderData;
 }

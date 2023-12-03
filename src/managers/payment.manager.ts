@@ -11,7 +11,7 @@ import {
   IPaymentSaveResponse,
   IPaymentDeleteResponse
 } from '../route/response/payment-response.type';
-import { PaymentDataType } from '../type/data/payment.type';
+import { IPaymentData } from '../type/data/payment.type';
 import BaseManager from './base.manager';
 
 const dayJs = require('dayjs');
@@ -112,7 +112,7 @@ export default class PaymentManager extends BaseManager {
     };
   }
 
-  parseDocumentToData(document: any): PaymentDataType {
+  parseDocumentToData(document): IPaymentData {
     const {
       clientId,
       good,

@@ -1,3 +1,5 @@
+import SignInHandler from '../handlers/auth/sign-in.handler';
+import SignUpHandler from '../handlers/auth/sign-up.handler';
 import CouponDeleteHandler from '../handlers/coupon/coupon-delete.handler';
 import CouponGetHandler from '../handlers/coupon/coupon-get.handler';
 import CouponSaveHandler from '../handlers/coupon/coupon-save.handler';
@@ -35,61 +37,71 @@ export default class HandlerManager {
     [ApiRoute.MarketActivity.path]: this.#getMarketActivityHandler,
     [ApiRoute.Order.path]: this.#getOrderHandler,
     [ApiRoute.Coupon.path]: this.#getCouponHandler,
-    [ApiRoute.Subscription.path]: this.#getSubscriptionHandler
+    [ApiRoute.Subscription.path]: this.#getSubscriptionHandler,
+    [ApiRoute.SignIn.path]: this.#getSignInHandler,
+    [ApiRoute.SignUp.path]: this.#getSignUpHandler
   };
 
-  getHandler(route: string, method: string): BaseHandler | undefined {
+  getHandler(route: string, method: MethodEnum): BaseHandler | undefined {
     return this.#handlerMap[route]?.call(this, method);
   }
 
-  #getOrganizationHandler(method: string): BaseHandler | undefined {
+  #getOrganizationHandler(method: MethodEnum): BaseHandler | undefined {
     if (method === MethodEnum.Get) return new OrganizationGetHandler();
     else if (method === MethodEnum.Post) return new OrganizationSaveHandler();
     else if (method === MethodEnum.Delete)
       return new OrganizationDeleteHandler();
   }
 
-  #getShopHandler(method: string): BaseHandler | undefined {
+  #getShopHandler(method: MethodEnum): BaseHandler | undefined {
     if (method === MethodEnum.Get) return new ShopGetHandler();
     else if (method === MethodEnum.Post) return new ShopSaveHandler();
     else if (method === MethodEnum.Delete) return new ShopDeleteHandler();
   }
 
-  #getUserHandler(method: string): BaseHandler | undefined {
+  #getUserHandler(method: MethodEnum): BaseHandler | undefined {
     if (method === MethodEnum.Get) return new UserGetHandler();
     else if (method === MethodEnum.Post) return new UserSaveHandler();
     else if (method === MethodEnum.Delete) return new UserDeleteHandler();
   }
 
-  #getProductHandler(method: string): BaseHandler | undefined {
+  #getProductHandler(method: MethodEnum): BaseHandler | undefined {
     if (method === MethodEnum.Get) return new ProductGetHandler();
     else if (method === MethodEnum.Post) return new ProductSaveHandler();
     else if (method === MethodEnum.Delete) return new ProductDeleteHandler();
   }
 
-  #getMarketActivityHandler(method: string): BaseHandler | undefined {
+  #getMarketActivityHandler(method: MethodEnum): BaseHandler | undefined {
     if (method === MethodEnum.Get) return new MarketActivityGetHandler();
     else if (method === MethodEnum.Post) return new MarketActivitySaveHandler();
     else if (method === MethodEnum.Delete)
       return new MarketActivityDeleteHandler();
   }
 
-  #getOrderHandler(method: string): BaseHandler | undefined {
+  #getOrderHandler(method: MethodEnum): BaseHandler | undefined {
     if (method === MethodEnum.Get) return new OrderGetHandler();
     else if (method === MethodEnum.Post) return new OrderSaveHandler();
     else if (method === MethodEnum.Delete) return new OrderDeleteHandler();
   }
 
-  #getCouponHandler(method: string): BaseHandler | undefined {
+  #getCouponHandler(method: MethodEnum): BaseHandler | undefined {
     if (method === MethodEnum.Get) return new CouponGetHandler();
     else if (method === MethodEnum.Post) return new CouponSaveHandler();
     else if (method === MethodEnum.Delete) return new CouponDeleteHandler();
   }
 
-  #getSubscriptionHandler(method: string): BaseHandler | undefined {
+  #getSubscriptionHandler(method: MethodEnum): BaseHandler | undefined {
     if (method === MethodEnum.Get) return new SubscriptionGetHandler();
     else if (method === MethodEnum.Post) return new SubscriptionSaveHandler();
     else if (method === MethodEnum.Delete)
       return new SubscriptionDeleteHandler();
+  }
+
+  #getSignInHandler(method: MethodEnum): BaseHandler | undefined {
+    if (method === MethodEnum.Post) return new SignInHandler();
+  }
+
+  #getSignUpHandler(method: MethodEnum): BaseHandler | undefined {
+    if (method === MethodEnum.Post) return new SignUpHandler();
   }
 }

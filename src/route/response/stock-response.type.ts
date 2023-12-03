@@ -1,14 +1,14 @@
-import { StockDataType } from '../../type/data/stock.type';
+import { IStockData } from '../../type/data/stock.type';
 import { IResponse } from './base-response.type';
 
 export interface IStockGetResponse extends IResponse {
-  stocks: StockDataType[];
+  stocks: IStockData[];
 }
 
 export interface IStockSaveResponse extends IResponse {
-  stock: StockDataType;
+  stock: IStockData;
 }
 
 export interface IStockDeleteResponse extends IResponse {
-  stock: StockDataType;
+  stock: IStockData;
 }

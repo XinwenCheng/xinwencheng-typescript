@@ -1,4 +1,4 @@
-import { PaymentDataType } from '../../type/data/payment.type';
+import { IPaymentData } from '../../type/data/payment.type';
 import { IGetRequest, IRequest } from './base-request.type';
 
 export interface IPaymentGetRequest extends IGetRequest {
@@ -8,7 +8,7 @@ export interface IPaymentGetRequest extends IGetRequest {
 }
 
 export interface IPaymentSaveRequest extends IRequest {
-  payment: PaymentDataType;
+  payment: IPaymentData;
 }
 
 export interface IPaymentDeleteRequest extends IRequest {

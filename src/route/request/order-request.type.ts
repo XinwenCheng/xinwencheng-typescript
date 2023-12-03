@@ -1,4 +1,4 @@
-import { OrderDataType } from '../../type/data/order.type';
+import { IOrderData } from '../../type/data/order.type';
 import { IGetRequest, IRequest } from './base-request.type';
 
 export interface IOrderGetRequest extends IGetRequest {
@@ -7,7 +7,7 @@ export interface IOrderGetRequest extends IGetRequest {
 }
 
 export interface IOrderSaveRequest extends IRequest {
-  order: OrderDataType;
+  order: IOrderData;
 }
 
 export interface IOrderDeleteRequest extends IRequest {

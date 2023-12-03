@@ -14,12 +14,12 @@ import {
   IOrderSaveResponse,
   IOrderDeleteResponse
 } from '../route/response/order-response.type';
-import { CouponDataType } from '../type/data/coupon.type';
+import { ICouponData } from '../type/data/coupon.type';
 import {
   DiscountMarketActivityRuleDataType,
   FreeMarketActivityRuleDataType
 } from '../type/data/market-activity.type';
-import { OrderDataType, OrderProductDataType } from '../type/data/order.type';
+import { IOrderData, OrderProductDataType } from '../type/data/order.type';
 import BaseManager from './base.manager';
 import CouponManager from './coupon.manager';
 import MarketActivityManager from './market-activity.manager';
@@ -54,7 +54,7 @@ export default class OrderManager extends BaseManager {
     const { order } = params;
 
     let document;
-    let usedCoupon: CouponDataType | undefined;
+    let usedCoupon: ICouponData | undefined;
 
     await MongooseHelper.startConnection();
 
@@ -127,7 +127,7 @@ export default class OrderManager extends BaseManager {
     };
   }
 
-  async newOrderDocument(order: OrderDataType, coupon?: CouponDataType) {
+  async newOrderDocument(order: IOrderData, coupon?: ICouponData) {
     const orderDocument = {
       clientId: uuidV4(),
       organizationId: order.organizationId,
@@ -194,7 +194,7 @@ export default class OrderManager extends BaseManager {
     return orderDocument;
   }
 
-  parseDocumentToData(document: any): OrderDataType {
+  parseDocumentToData(document): IOrderData {
     const {
       clientId,
       organizationId,

@@ -1,4 +1,4 @@
-import { CouponDataType } from '../../type/data/coupon.type';
+import { ICouponData } from '../../type/data/coupon.type';
 import { IGetRequest, IRequest } from './base-request.type';
 
 export interface ICouponGetRequest extends IGetRequest {
@@ -17,7 +17,7 @@ export interface ICouponCreateRequest extends IRequest {
 }
 
 export interface ICouponSaveRequest extends IRequest {
-  coupon: CouponDataType;
+  coupon: ICouponData;
 }
 
 export interface ICouponDeleteRequest extends IRequest {

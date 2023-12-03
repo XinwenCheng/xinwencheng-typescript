@@ -1,4 +1,4 @@
-import { SubscriptionDataType } from '../../type/data/subscription.type';
+import { ISubscriptionData } from '../../type/data/subscription.type';
 import { IGetRequest, IRequest } from './base-request.type';
 
 export interface ISubscriptionGetRequest extends IGetRequest {
@@ -7,7 +7,7 @@ export interface ISubscriptionGetRequest extends IGetRequest {
 }
 
 export interface ISubscriptionSaveRequest extends IRequest {
-  subscription: SubscriptionDataType;
+  subscription: ISubscriptionData;
 }
 
 export interface ISubscriptionDeleteRequest extends IRequest {

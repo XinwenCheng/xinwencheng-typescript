@@ -13,10 +13,10 @@ import {
   ICouponDeleteResponse,
   ICouponCreateResponse
 } from '../route/response/coupon-response.type';
-import { CouponDataType } from '../type/data/coupon.type';
-import { MarketActivityDataType } from '../type/data/market-activity.type';
-import { OrderDataType } from '../type/data/order.type';
-import { PaymentDataType } from '../type/data/payment.type';
+import { ICouponData } from '../type/data/coupon.type';
+import { IMarketActivityData } from '../type/data/market-activity.type';
+import { IOrderData } from '../type/data/order.type';
+import { IPaymentData } from '../type/data/payment.type';
 import BaseManager from './base.manager';
 import MarketActivityManager from './market-activity.manager';
 import OrderManager from './order.manager';
@@ -144,8 +144,8 @@ export default class CouponManager extends BaseManager {
     if (!organizationId || (!paymentId && !marketActivityId && !userId))
       throw new Error('ID is required');
 
-    let order: OrderDataType | undefined;
-    let payment: PaymentDataType | undefined;
+    let order: IOrderData | undefined;
+    let payment: IPaymentData | undefined;
     let shopId: string | undefined;
 
     if (paymentId) {
@@ -181,7 +181,7 @@ export default class CouponManager extends BaseManager {
         message: 'No available market activity found.'
       };
 
-    const coupons: CouponDataType[] = [];
+    const coupons: ICouponData[] = [];
 
     // Create coupon for each market activity.
     for (let index = 0; index < marketActivities.length; index++) {
@@ -202,11 +202,11 @@ export default class CouponManager extends BaseManager {
   }
 
   async createCoupon(params: {
-    marketActivity: MarketActivityDataType;
+    marketActivity: IMarketActivityData;
     userId: string;
-    order?: OrderDataType;
-    payment?: PaymentDataType;
-  }): Promise<CouponDataType | undefined> {
+    order?: IOrderData;
+    payment?: IPaymentData;
+  }): Promise<ICouponData | undefined> {
     const { marketActivity, userId, order, payment } = params;
 
     // Order with coupon is not allowed to create new coupon.
@@ -223,7 +223,7 @@ export default class CouponManager extends BaseManager {
       rule
     } = marketActivity;
 
-    const couponData: CouponDataType = {
+    const couponData: ICouponData = {
       id: `${uuidV4()}`,
       name,
       description,
@@ -252,7 +252,7 @@ export default class CouponManager extends BaseManager {
     return coupon;
   }
 
-  async use(id: string): Promise<CouponDataType | undefined> {
+  async use(id: string): Promise<ICouponData | undefined> {
     if (!id) throw new Error('ID is required');
 
     await MongooseHelper.startConnection();
@@ -268,7 +268,7 @@ export default class CouponManager extends BaseManager {
     return this.parseDocumentToData(document);
   }
 
-  parseDocumentToData(document: any): CouponDataType {
+  parseDocumentToData(document): ICouponData {
     const {
       clientId,
       name,

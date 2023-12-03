@@ -1,6 +1,6 @@
 import { IDataType } from '../base.type';
 
-export interface PaymentDataType extends IDataType {
+export interface IPaymentData extends IDataType {
   good: GoodType;
   userId: string;
   couponId?: string;

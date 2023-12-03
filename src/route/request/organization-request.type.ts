@@ -1,4 +1,4 @@
-import { OrganizationDataType } from '../../type/data/organization.type';
+import { IOrganizationData } from '../../type/data/organization.type';
 import { IGetRequest, IRequest } from './base-request.type';
 
 export interface IOrganizationGetRequest extends IGetRequest {
@@ -6,7 +6,7 @@ export interface IOrganizationGetRequest extends IGetRequest {
 }
 
 export interface IOrganizationSaveRequest extends IRequest {
-  organization: OrganizationDataType;
+  organization: IOrganizationData;
 }
 
 export interface IOrganizationDeleteRequest extends IRequest {

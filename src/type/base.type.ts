@@ -23,7 +23,7 @@ export interface IHandlerParameterDataType {
 }
 
 export interface IDataType {
-  id: string;
+  id?: string;
   isDeleted?: boolean;
   createdAt: Date;
   updatedAt?: Date;

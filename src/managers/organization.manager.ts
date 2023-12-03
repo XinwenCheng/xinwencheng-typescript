@@ -11,7 +11,7 @@ import {
   IOrganizationGetResponse,
   IOrganizationSaveResponse
 } from '../route/response/organization-response.type';
-import { OrganizationDataType } from '../type/data/organization.type';
+import { IOrganizationData } from '../type/data/organization.type';
 import BaseManager from './base.manager';
 
 const dayJs = require('dayjs');
@@ -97,7 +97,7 @@ export default class OrganizationManager extends BaseManager {
     };
   }
 
-  parseDocumentToData(document: any): OrganizationDataType {
+  parseDocumentToData(document): IOrganizationData {
     const {
       clientId,
       name,

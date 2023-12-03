@@ -1,7 +1,7 @@
 import { IDataType } from '../base.type';
 import { BaseMarketActivityRuleDataType } from './market-activity.type';
 
-export interface CouponDataType extends IDataType {
+export interface ICouponData extends IDataType {
   id: string;
   name: string;
   description?: string;

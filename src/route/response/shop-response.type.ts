@@ -1,14 +1,14 @@
-import { ShopDataType } from '../../type/data/shop.type';
+import { IShopData } from '../../type/data/shop.type';
 import { IResponse } from './base-response.type';
 
 export interface IShopGetResponse extends IResponse {
-  shops: ShopDataType[];
+  shops: IShopData[];
 }
 
 export interface IShopSaveResponse extends IResponse {
-  shop: ShopDataType;
+  shop: IShopData;
 }
 
 export interface IShopDeleteResponse extends IResponse {
-  shop: ShopDataType;
+  shop: IShopData;
 }

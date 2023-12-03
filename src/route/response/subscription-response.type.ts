@@ -1,14 +1,14 @@
-import { SubscriptionDataType } from '../../type/data/subscription.type';
+import { ISubscriptionData } from '../../type/data/subscription.type';
 import { IResponse } from './base-response.type';
 
 export interface ISubscriptionGetResponse extends IResponse {
-  subscriptions: SubscriptionDataType[];
+  subscriptions: ISubscriptionData[];
 }
 
 export interface ISubscriptionSaveResponse extends IResponse {
-  subscription: SubscriptionDataType;
+  subscription: ISubscriptionData;
 }
 
 export interface ISubscriptionDeleteResponse extends IResponse {
-  subscription: SubscriptionDataType;
+  subscription: ISubscriptionData;
 }

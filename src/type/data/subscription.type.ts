@@ -2,7 +2,7 @@ import { IDataType } from '../base.type';
 import { DiscountCouponType } from './coupon.type';
 import { ProductCategoryType } from './product.type';
 
-export interface SubscriptionDataType extends IDataType {
+export interface ISubscriptionData extends IDataType {
   subscriberId: string;
   organizationId: string;
   duration: SubscriptionDurationType;

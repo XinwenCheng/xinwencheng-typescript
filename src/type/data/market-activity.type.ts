@@ -2,7 +2,7 @@ import { IDataType } from '../base.type';
 import { DiscountCouponType } from './coupon.type';
 import { ProductCategoryType } from './product.type';
 
-export interface MarketActivityDataType extends IDataType {
+export interface IMarketActivityData extends IDataType {
   organizationId: string;
   shopIds?: string[];
   startDate: Date;

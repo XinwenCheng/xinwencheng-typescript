@@ -1,6 +1,6 @@
 import { IDataType } from '../base.type';
 
-export interface StockDataType extends IDataType {
+export interface IStockData extends IDataType {
   productId: string;
   organizationId: string;
   shopId?: string;

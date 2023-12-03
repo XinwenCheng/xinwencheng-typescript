@@ -3,6 +3,8 @@ import { MarketActivityRouteType } from './market-activity-route.type';
 import { OrganizationRouteType } from './organization-route.type';
 import { ProductRouteType } from './product-route.type';
 import { ShopRouteType } from './shop-route.type';
+import { SignInRouteType } from './sign-in-route.type';
+import { SignUpRouteType } from './sign-up-route.type';
 import { SubScriptionRouteType } from './subscription-route.type';
 import { UserRouteType } from './user-route.type';
 
@@ -37,5 +39,13 @@ export class ApiRoute {
 
   static Subscription: SubScriptionRouteType = {
     path: '/subscriptions'
+  };
+
+  static SignIn: SignInRouteType = {
+    path: '/sign-in'
+  };
+
+  static SignUp: SignUpRouteType = {
+    path: '/sign-up'
   };
 }

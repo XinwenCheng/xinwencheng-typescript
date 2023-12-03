@@ -1,14 +1,14 @@
-import { MarketActivityDataType } from '../../type/data/market-activity.type';
+import { IMarketActivityData } from '../../type/data/market-activity.type';
 import { IResponse } from './base-response.type';
 
 export interface IMarketActivityGetResponse extends IResponse {
-  marketActivities: MarketActivityDataType[];
+  marketActivities: IMarketActivityData[];
 }
 
 export interface IMarketActivitySaveResponse extends IResponse {
-  marketActivity: MarketActivityDataType;
+  marketActivity: IMarketActivityData;
 }
 
 export interface IMarketActivityDeleteResponse extends IResponse {
-  marketActivity: MarketActivityDataType;
+  marketActivity: IMarketActivityData;
 }

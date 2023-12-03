@@ -20,5 +20,5 @@ export default abstract class BaseManager {
 
   abstract delete(params: IRequest): Promise<IResponse>;
 
-  abstract parseDocumentToData(document: any): IDataType;
+  abstract parseDocumentToData(document): IDataType;
 }

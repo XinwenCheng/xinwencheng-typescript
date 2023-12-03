@@ -2,7 +2,7 @@ const { v4: uuidV4 } = require('uuid');
 const dayJs = require('dayjs');
 
 import BaseManager from './base.manager';
-import { SubscriptionDataType } from '../type/data/subscription.type';
+import { ISubscriptionData } from '../type/data/subscription.type';
 import {
   ISubscriptionDeleteRequest,
   ISubscriptionGetRequest,
@@ -37,7 +37,7 @@ export default class SubscriptionManager extends BaseManager {
       code: ResponseCodeEnum.Success,
       subscriptions: documents.map((item) =>
         this.parseDocumentToData(item)
-      ) as SubscriptionDataType[]
+      ) as ISubscriptionData[]
     };
   }
 
@@ -112,7 +112,7 @@ export default class SubscriptionManager extends BaseManager {
     };
   }
 
-  parseDocumentToData(document): SubscriptionDataType {
+  parseDocumentToData(document): ISubscriptionData {
     const {
       clientId,
       organizationId,
