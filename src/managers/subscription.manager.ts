@@ -44,23 +44,31 @@ export default class SubscriptionManager extends BaseManager {
   async save(
     params: ISubscriptionSaveRequest
   ): Promise<ISubscriptionSaveResponse> {
-    const { subscription } = params;
+    const {
+      id,
+      subscriberId,
+      organizationId,
+      duration,
+      startDate,
+      expiryDate
+    } = params.subscription;
     const now = dayJs.utc().toDate();
 
     let document;
 
     await MongooseHelper.startConnection();
 
-    if (subscription.id) {
+    if (id) {
       document = await SubscriptionModel.findOneAndUpdate(
         {
-          clientId: subscription.id
+          clientId: id
         },
         {
-          subscriberId: subscription.subscriberId,
-          type: subscription.type,
-          startDate: subscription.startDate,
-          expiryDate: subscription.expiryDate,
+          organizationId,
+          subscriberId,
+          duration,
+          startDate,
+          expiryDate,
           updatedAt: now
         },
         { new: true }
@@ -68,10 +76,11 @@ export default class SubscriptionManager extends BaseManager {
     } else {
       document = await new SubscriptionModel({
         clientId: uuidV4(),
-        subscriberId: subscription.subscriberId,
-        type: subscription.type,
-        startDate: subscription.startDate,
-        expiryDate: subscription.expiryDate,
+        organizationId,
+        subscriberId,
+        duration,
+        startDate,
+        expiryDate,
         createdAt: now
       }).save();
     }
@@ -108,9 +117,10 @@ export default class SubscriptionManager extends BaseManager {
       clientId,
       organizationId,
       subscriberId,
-      type,
+      duration,
       startDate,
       expiryDate,
+      capability,
       createdAt,
       updatedAt
     } = document;
@@ -119,9 +129,10 @@ export default class SubscriptionManager extends BaseManager {
       id: clientId,
       organizationId,
       subscriberId,
-      type,
+      duration,
       startDate,
       expiryDate,
+      capability,
       createdAt,
       updatedAt
     };

@@ -15,3 +15,10 @@ export interface CouponDataType extends IDataType {
   isMandatoryExpired?: boolean;
   rule: BaseMarketActivityRuleDataType;
 }
+
+export type DiscountCouponUnitType = 'price' | 'percent';
+
+export type DiscountCouponType = {
+  quantity: number;
+  unit: DiscountCouponUnitType;
+};

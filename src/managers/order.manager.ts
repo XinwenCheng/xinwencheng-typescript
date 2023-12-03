@@ -143,17 +143,17 @@ export default class OrderManager extends BaseManager {
       const { rule } = coupon;
 
       if (rule.type === 'discount') {
-        const discountRule = rule as DiscountMarketActivityRuleDataType;
+        const { discount } = rule as DiscountMarketActivityRuleDataType;
 
-        if (discountRule.unit === 'price') {
+        if (discount.unit === 'price') {
           orderDocument.price.final = Math.max(
-            orderDocument.price.final - discountRule.discount,
+            orderDocument.price.final - discount.quantity,
             0
           );
-        } else if (discountRule.unit === 'percent') {
+        } else if (discount.unit === 'percent') {
           orderDocument.price.final = Math.max(
             orderDocument.price.final -
-              orderDocument.price.final * (discountRule.discount / 100),
+              orderDocument.price.final * (discount.quantity / 100),
             0
           );
         }

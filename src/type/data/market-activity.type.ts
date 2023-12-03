@@ -1,4 +1,5 @@
 import { IDataType } from '../base.type';
+import { DiscountCouponType } from './coupon.type';
 import { ProductCategoryType } from './product.type';
 
 export interface MarketActivityDataType extends IDataType {
@@ -29,8 +30,7 @@ export interface MarketActivityRulePreconditionDataType {
 
 export interface DiscountMarketActivityRuleDataType
   extends BaseMarketActivityRuleDataType {
-  discount: number;
-  unit: 'percent' | 'price';
+  discount: DiscountCouponType;
 }
 
 export interface FreeMarketActivityRuleDataType
