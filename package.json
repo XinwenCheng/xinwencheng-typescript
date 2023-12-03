@@ -10,7 +10,8 @@
     "start": "npm run clear && prettier -w src && npm run build",
     "deploy": "npm run clear && prettier -w src && npm run build && npm run clear",
     "clear": "rm -rf dist",
-    "lint": "eslint src --ext .ts"
+    "lint": "eslint src --ext .ts",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
@@ -43,7 +44,7 @@
     "@typescript-eslint/eslint-plugin": "6.13.1",
     "@typescript-eslint/parser": "6.13.1",
     "eslint": "8.55.0",
-    "husky": "8.0.3",
+    "husky": "8.0.0",
     "lint-staged": "15.2.0",
     "prettier": "3.1.0",
     "typescript": "5.3.2"
