@@ -21,13 +21,15 @@ export default class SubscriptionManager extends BaseManager {
   async get(
     params: ISubscriptionGetRequest
   ): Promise<ISubscriptionGetResponse> {
-    const { ids } = params;
+    const { ids, subscriberId, includeDeleted } = params;
 
-    if (!ids.length) throw new Error('ID is required');
+    if (!ids.length && subscriberId) throw new Error('ID is required');
 
-    const query = {
-      clientId: { $in: ids }
-    };
+    const query = {};
+
+    if (ids.length) query['clientId'] = { $in: ids };
+    if (subscriberId) query['subscriberId'] = subscriberId;
+    if (!includeDeleted) query['isDeleted'] = { $ne: true };
 
     const documents = await SubscriptionModel.find(query);
 

@@ -32,10 +32,9 @@ export default class MarketActivityManager extends BaseManager {
       throw new Error('ID is required');
 
     const query: {
-      [key: string]:
-        | {
-            [key: string]: string | { [key: string]: string | string[] };
-          }[];
+      [key: string]: {
+        [key: string]: string | { [key: string]: string | string[] };
+      }[];
     } = {};
     query['$or'] = [];
 

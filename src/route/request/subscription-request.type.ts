@@ -2,7 +2,8 @@ import { SubscriptionDataType } from '../../type/data/subscription.type';
 import { IGetRequest, IRequest } from './base-request.type';
 
 export interface ISubscriptionGetRequest extends IGetRequest {
-  ids: string[];
+  ids?: string[];
+  subscriberId?: string;
 }
 
 export interface ISubscriptionSaveRequest extends IRequest {
