@@ -19,7 +19,9 @@ import { IOrderData } from '../type/data/order.type';
 import { IPaymentData } from '../type/data/payment.type';
 import BaseManager from './base.manager';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const dayJs = require('dayjs');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { v4: uuidV4 } = require('uuid');
 
 export default class MarketActivityManager extends BaseManager {

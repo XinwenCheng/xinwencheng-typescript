@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 export default class MongooseHelper {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static #connection?: any;
 
   static async startConnection() {

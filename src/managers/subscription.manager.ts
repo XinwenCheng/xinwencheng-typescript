@@ -1,4 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { v4: uuidV4 } = require('uuid');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const dayJs = require('dayjs');
 
 import BaseManager from './base.manager';

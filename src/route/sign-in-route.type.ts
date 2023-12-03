@@ -1,3 +1,3 @@
 import { BaseRouteType } from './base.type';
 
-export type SignInRouteType = {} & BaseRouteType;
+export type SignInRouteType = BaseRouteType;

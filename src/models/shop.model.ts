@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { v4: uuidV4 } = require('uuid');
 import mongoose, { Schema, model } from 'mongoose';
 

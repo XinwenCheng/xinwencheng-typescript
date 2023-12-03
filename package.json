@@ -9,7 +9,8 @@
     "gcp-build": "",
     "start": "npm run clear && prettier -w src && npm run build",
     "deploy": "npm run clear && prettier -w src && npm run build && npm run clear",
-    "clear": "rm -rf dist"
+    "clear": "rm -rf dist",
+    "lint": "eslint src --ext .ts"
   },
   "dependencies": {
     "@google-cloud/functions-framework": "3.3.0",
@@ -23,6 +24,9 @@
     "uuid": "9.0.1"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "6.13.1",
+    "@typescript-eslint/parser": "6.13.1",
+    "eslint": "8.55.0",
     "typescript": "5.3.2"
   }
 }

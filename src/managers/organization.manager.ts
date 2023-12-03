@@ -14,7 +14,9 @@ import {
 import { IOrganizationData } from '../type/data/organization.type';
 import BaseManager from './base.manager';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const dayJs = require('dayjs');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { v4: uuidV4 } = require('uuid');
 
 export default class OrganizationManager extends BaseManager {

@@ -1,7 +1,9 @@
 import { IBaseRequestData } from '../route/request/base-request.type';
 import { IBaseResponseData } from '../route/response/base-response.type';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const dayJs = require('dayjs');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const utc = require('dayjs/plugin/utc');
 
 export default abstract class BaseHandler {
@@ -21,6 +23,7 @@ export default abstract class BaseHandler {
 export interface IHandlerParameterDataType {
   requestData: IBaseRequestData;
   fromToken?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   request?: any;
 }
 

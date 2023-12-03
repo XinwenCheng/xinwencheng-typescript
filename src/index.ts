@@ -3,6 +3,7 @@ import { MethodEnum } from './type/method.type';
 import HandlerManager from './managers/handler.manager';
 import { ResponseCodeEnum } from './route/response/base-response.type';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const entrance: HttpFunction = async (request: any, response: any) => {
   // Handle CORS for preflight request: https://cloud.google.com/functions/docs/samples/functions-http-cors#functions_http_cors-nodejs.
   console.log(
@@ -54,6 +55,7 @@ export const entrance: HttpFunction = async (request: any, response: any) => {
         request
       });
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('INDEX error:', error);
 
