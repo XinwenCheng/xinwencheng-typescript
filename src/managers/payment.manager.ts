@@ -40,25 +40,35 @@ export default class PaymentManager extends BaseManager {
   }
 
   async save(params: IPaymentSaveRequest): Promise<IPaymentSaveResponse> {
-    const { payment } = params;
+    const {
+      id,
+      good,
+      userId,
+      couponId,
+      totalPrice,
+      finalPrice,
+      receiptId,
+      status,
+      isDeleted
+    } = params.payment;
     const now = dayJs.utc().toDate();
 
     let document;
 
     await MongooseHelper.startConnection();
 
-    if (payment.id) {
+    if (id) {
       document = await PaymentModel.findOneAndUpdate(
-        { clientId: payment.id },
+        { clientId: id },
         {
-          orderId: payment.orderId,
-          userId: payment.userId,
-          couponId: payment.couponId,
-          totalPrice: payment.totalPrice,
-          finalPrice: payment.finalPrice,
-          receiptId: payment.receiptId,
-          status: payment.status,
-          isDeleted: payment.isDeleted,
+          good: good,
+          userId: userId,
+          couponId: couponId,
+          totalPrice: totalPrice,
+          finalPrice: finalPrice,
+          receiptId: receiptId,
+          status: status,
+          isDeleted: isDeleted,
           updatedAt: now
         },
         { new: true }
@@ -66,13 +76,13 @@ export default class PaymentManager extends BaseManager {
     } else {
       document = await PaymentModel.create({
         clientId: uuidV4(),
-        orderId: payment.orderId,
-        userId: payment.userId,
-        couponId: payment.couponId,
-        totalPrice: payment.totalPrice,
-        finalPrice: payment.finalPrice,
-        receiptId: payment.receiptId,
-        status: payment.status,
+        good: good,
+        userId: userId,
+        couponId: couponId,
+        totalPrice: totalPrice,
+        finalPrice: finalPrice,
+        receiptId: receiptId,
+        status: status,
         createdAt: now
       });
     }
@@ -105,7 +115,7 @@ export default class PaymentManager extends BaseManager {
   parseDocumentToData(document: any): PaymentDataType {
     const {
       clientId,
-      orderId,
+      good,
       userId,
       couponId,
       totalPrice,
@@ -119,7 +129,7 @@ export default class PaymentManager extends BaseManager {
 
     return {
       id: clientId,
-      orderId,
+      good,
       userId,
       couponId,
       totalPrice,

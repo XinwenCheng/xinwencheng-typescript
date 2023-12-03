@@ -155,7 +155,7 @@ export default class CouponManager extends BaseManager {
 
       if (payments.length) {
         payment = payments[0];
-        const orderId = payment.orderId;
+        const { id: orderId, type } = payment.good;
 
         const { orders } = await new OrderManager().get({
           ids: [orderId]

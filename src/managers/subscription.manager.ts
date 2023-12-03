@@ -59,7 +59,6 @@ export default class SubscriptionManager extends BaseManager {
           type: subscription.type,
           startDate: subscription.startDate,
           expiryDate: subscription.expiryDate,
-          paymentId: subscription.paymentId,
           updatedAt: now
         },
         { new: true }
@@ -71,7 +70,6 @@ export default class SubscriptionManager extends BaseManager {
         type: subscription.type,
         startDate: subscription.startDate,
         expiryDate: subscription.expiryDate,
-        paymentId: subscription.paymentId,
         createdAt: now
       }).save();
     }
@@ -106,22 +104,22 @@ export default class SubscriptionManager extends BaseManager {
   parseDocumentToData(document): SubscriptionDataType {
     const {
       clientId,
+      organizationId,
       subscriberId,
       type,
       startDate,
       expiryDate,
-      paymentId,
       createdAt,
       updatedAt
     } = document;
 
     return {
       id: clientId,
+      organizationId,
       subscriberId,
       type,
       startDate,
       expiryDate,
-      paymentId,
       createdAt,
       updatedAt
     };

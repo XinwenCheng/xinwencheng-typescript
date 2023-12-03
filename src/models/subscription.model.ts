@@ -2,6 +2,7 @@ import { Schema, model } from 'mongoose';
 
 const subscriptionSchema = new Schema({
   subscriberId: { type: String, required: true },
+  organizationId: { type: String, required: true },
   type: { type: String, required: true },
   startDate: { type: Date, required: true },
   expiryDate: Date,

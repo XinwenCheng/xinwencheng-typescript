@@ -1,7 +1,7 @@
 import { IDataType } from '../base.type';
 
 export interface PaymentDataType extends IDataType {
-  orderId: string;
+  good: GoodType;
   userId: string;
   couponId?: string;
   totalPrice: number;
@@ -11,3 +11,8 @@ export interface PaymentDataType extends IDataType {
 }
 
 export type PaymentStatuType = 'pending' | 'paid' | 'cancelled';
+
+export type GoodType = {
+  id: string;
+  type: 'order' | 'subscription';
+};

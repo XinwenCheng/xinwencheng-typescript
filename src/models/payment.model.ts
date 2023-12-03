@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 
 const paymentSchema = new Schema({
-  orderId: { type: String, required: true },
+  good: { type: Object, required: true },
   userId: { type: String, required: true },
   couponId: String,
   totalPrice: { type: Number, default: 0 },
